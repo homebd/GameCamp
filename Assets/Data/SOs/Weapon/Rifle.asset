@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c3b78b2594fae499162dfd218c4692, type: 3}
+  m_Name: Rifle
+  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Data.WeaponDataSO
+  <WeaponId>k__BackingField: 1001
+  <WeaponKind>k__BackingField: 1
+  <DisplayName>k__BackingField: "\uC18C\uCD1D"
+  <SignatureColor>k__BackingField: {r: 0.5849056, g: 0.43946752, b: 0.24554999, a: 1}
+  <WeaponSprite>k__BackingField: {fileID: 2208703988740019828, guid: 622e5fa535b4ce54293843e767216af9, type: 3}
+  <BaseDamage>k__BackingField: 3
+  <BaseAttackRate>k__BackingField: 4
+  <ProjectileSpeed>k__BackingField: 12
+  <ProjectileLifetime>k__BackingField: 3

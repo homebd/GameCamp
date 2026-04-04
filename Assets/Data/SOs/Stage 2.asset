@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3382b8a55d7879e418f8828427af572f, type: 3}
+  m_Name: Stage 2
+  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Data.StageConfigSO
+  <EnemyBaseHp>k__BackingField: 60
+  <EnemyMoveSpeed>k__BackingField: 2.1
+  <MaxSegmentCount>k__BackingField: 80
+  <ScaleHpTowardTail>k__BackingField: 1
+  <HpIncreasePerSegment>k__BackingField: 0.03
+  <MaxHpMultiplier>k__BackingField: 2.5
+  <UseBezierPath>k__BackingField: 1
+  <PathPoints>k__BackingField:
+  - {x: 5, y: 9}
+  - {x: 0, y: 9}
+  - {x: -4, y: 9}
+  - {x: -4, y: 6}
+  - {x: -2, y: 4}
+  - {x: 2, y: 8}
+  - {x: 4, y: 6}
+  - {x: 2, y: 4}
+  - {x: -2, y: 8}
+  - {x: -4, y: 6}
+  - {x: -4, y: 3}
+  - {x: 0, y: 3}
+  - {x: 4, y: 3}
+  - {x: 4, y: 0}
+  - {x: 2, y: -2}
+  - {x: -2, y: 2}
+  - {x: -4, y: 0}
+  - {x: -2, y: -2}
+  - {x: 2, y: 2}
+  - {x: 4, y: 0}
+  - {x: 4, y: -3}
+  - {x: 0, y: -3}
+  - {x: 0, y: -7}
+  <EnrageSpeedMultiplier>k__BackingField: 1.2
+  <EnrageDurationSeconds>k__BackingField: 5
+  <EnrageTriggerProgresses01>k__BackingField:
+  - 0.2
+  - 0.5
+  <EnrageHeadSprite>k__BackingField: {fileID: 21300000, guid: 4e276d4c776fb4970aa400d764d0ad56, type: 3}
+  <RewardLevelChances>k__BackingField:
+  - <RewardLevel>k__BackingField: 0
+    <Chance>k__BackingField: 0
+  - <RewardLevel>k__BackingField: 1
+    <Chance>k__BackingField: 0.2
+  - <RewardLevel>k__BackingField: 2
+    <Chance>k__BackingField: 0.15
+  - <RewardLevel>k__BackingField: 3
+    <Chance>k__BackingField: 0.05

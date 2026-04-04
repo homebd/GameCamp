@@ -1,0 +1,47 @@
+id,name,desc,rarity,scope,max_count,duration,effect_0_type,value_0,effect_0_weapon
+101,공격력 강화 I,공격력 {value_0_pct}% 증가,Common,Common,0,0,DamageMultiplier,0.12,Common
+102,공격력 강화 II,공격력 {value_0_pct}% 증가,Rare,Common,0,0,DamageMultiplier,0.18,Common
+103,공격력 강화 III,공격력 {value_0_pct}% 증가,Epic,Common,0,0,DamageMultiplier,0.24,Common
+104,공격력 강화 VI,공격력 {value_0_pct}% 증가,Legendary,Common,0,0,DamageMultiplier,0.36,Common
+105,연사 강화 I,공격속도 {value_0_pct}% 증가,Common,Common,0,0,FirerateMultiplier,0.08,Common
+106,연사 강화 II,공격속도 {value_0_pct}% 증가,Rare,Common,0,0,FirerateMultiplier,0.12,Common
+107,연사 강화 III,공격속도 {value_0_pct}% 증가,Epic,Common,0,0,FirerateMultiplier,0.16,Common
+108,연사 강화 VI,공격속도 {value_0_pct}% 증가,Legendary,Common,0,0,FirerateMultiplier,0.24,Common
+,,,,,,,,,
+200,소총,소총 잠금 해제,Common,Common,1,0,Unlock,0,Rifle
+201,소총 치명탄 I,소총 공격력 {value_0_pct}% 증가,Common,Rifle,0,0,DamageMultiplier,0.18,Rifle
+202,소총 치명탄 II,소총 공격력 {value_0_pct}% 증가,Rare,Rifle,0,0,DamageMultiplier,0.24,Rifle
+203,소총 치명탄 III,소총 공격력 {value_0_pct}% 증가,Epic,Rifle,0,0,DamageMultiplier,0.36,Rifle
+204,소총 치명탄 VI,소총 공격력 {value_0_pct}% 증가,Legendary,Rifle,0,0,DamageMultiplier,0.5,Rifle
+205,소총 고속사격 I,소총 공격속도 {value_0_pct}% 증가,Common,Rifle,0,0,FirerateMultiplier,0.12,Rifle
+206,소총 고속사격 II,소총 공격속도 {value_0_pct}% 증가,Rare,Rifle,0,0,FirerateMultiplier,0.16,Rifle
+207,소총 고속사격 III,소총 공격속도 {value_0_pct}% 증가,Epic,Rifle,0,0,FirerateMultiplier,0.24,Rifle
+208,소총 고속사격 VI,소총 공격속도 {value_0_pct}% 증가,Legendary,Rifle,0,0,FirerateMultiplier,0.36,Rifle
+209,더블 샷,소총 탄알 수 {value_0_int} 증가,Rare,Rifle,1,0,CountAdder,1,Rifle
+210,트리플 샷,소총 탄알 수 {value_0_int} 증가,Epic,Rifle,1,0,CountAdder,1,Rifle
+211,쿼드라 샷,소총 탄알 수 {value_0_int} 증가,Legendary,Rifle,1,0,CountAdder,1,Rifle
+212,관통탄,소총 적 관통 {value_0_int} 증가,Rare,Rifle,3,0,PierceAdder,1,Rifle
+213,스팀팩,5초 간 소총 공격속도 {value_0_pct}% 증가,Common,Rifle,3,5,FirerateMultiplier,2,Rifle
+,,,,,,,,,
+300,레이저,레이저 잠금 해제,Rare,Common,1,0,Unlock,0,Laser
+301,레이저 증폭 I,레이저 크기 {value_0_pct}% 증가,Common,Laser,0,0,ScaleMultiplier,0.12,Laser
+302,레이저 증폭 II,레이저 크기 {value_0_pct}% 증가,Rare,Laser,0,0,ScaleMultiplier,0.18,Laser
+303,레이저 증폭 III,레이저 크기 {value_0_pct}% 증가,Epic,Laser,0,0,ScaleMultiplier,0.24,Laser
+304,레이저 유지 I,레이저 지속시간 {value_0_pct}% 증가,Rare,Laser,0,0,LifeTimeMultiplier,0.12,Laser
+305,레이저 유지 II,레이저 지속시간 {value_0_pct}% 증가,Epic,Laser,0,0,LifeTimeMultiplier,0.18,Laser
+306,레이저 유지 III,레이저 지속시간 {value_0_pct}% 증가,Legendary,Laser,0,0,LifeTimeMultiplier,0.24,Laser
+,,,,,,,,,
+400,미사일,미사일 잠금 해제,Rare,Common,1,0,Unlock,0,Missile
+401,미사일 치명탄 I,미사일 공격력 {value_0_pct}% 증가,Common,Missile,0,0,DamageMultiplier,0.25,Missile
+402,미사일 치명탄 II,미사일 공격력 {value_0_pct}% 증가,Rare,Missile,0,0,DamageMultiplier,0.36,Missile
+403,미사일 치명탄 III,미사일 공격력 {value_0_pct}% 증가,Epic,Missile,0,0,DamageMultiplier,0.55,Missile
+404,미사일 치명탄 VI,미사일 공격력 {value_0_pct}% 증가,Legendary,Missile,0,0,DamageMultiplier,0.8,Missile
+405,미사일 고속발사 I,미사일 공격속도 {value_0_pct}% 증가,Common,Missile,0,0,FirerateMultiplier,0.12,Missile
+406,미사일 고속발사 II,미사일 공격속도 {value_0_pct}% 증가,Rare,Missile,0,0,FirerateMultiplier,0.16,Missile
+407,미사일 고속발사 III,미사일 공격속도 {value_0_pct}% 증가,Epic,Missile,0,0,FirerateMultiplier,0.24,Missile
+408,미사일 고속발사 VI,미사일 공격속도 {value_0_pct}% 증가,Legendary,Missile,0,0,FirerateMultiplier,0.36,Missile
+409,다중 발사,미사일 탄환 수 {value_0_int} 증가,Epic,Missile,2,0,CountAdder,1,Missile
+410,미사일 치명탄 I,미사일 폭발 범위 {value_0_pct}% 증가,Common,Missile,0,0,ScaleMultiplier,0.1,Missile
+411,미사일 치명탄 II,미사일 폭발 범위 {value_0_pct}% 증가,Rare,Missile,0,0,ScaleMultiplier,0.18,Missile
+412,미사일 치명탄 III,미사일 폭발 범위 {value_0_pct}% 증가,Epic,Missile,0,0,ScaleMultiplier,0.32,Missile
+413,미사일 치명탄 VI,미사일 폭발 범위 {value_0_pct}% 증가,Legendary,Missile,0,0,ScaleMultiplier,0.5,Missile

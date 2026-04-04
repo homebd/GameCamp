@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c3b78b2594fae499162dfd218c4692, type: 3}
+  m_Name: Missile
+  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Data.WeaponDataSO
+  <WeaponId>k__BackingField: 1002
+  <WeaponKind>k__BackingField: 3
+  <DisplayName>k__BackingField: "\uBBF8\uC0AC\uC77C"
+  <SignatureColor>k__BackingField: {r: 0.6981132, g: 0.2767929, b: 0.21404415, a: 1}
+  <WeaponSprite>k__BackingField: {fileID: 21300000, guid: c143aadfc38d40f4aabc25fd7408b9ad, type: 3}
+  <BaseDamage>k__BackingField: 20
+  <BaseAttackRate>k__BackingField: 0.5
+  <ProjectileSpeed>k__BackingField: 6
+  <ProjectileLifetime>k__BackingField: 10
