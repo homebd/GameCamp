@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2889b6ad0834aca48abb78c9aa9e603a, type: 3}
+  m_Name: AudioCueCatalogSO
+  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Audio.AudioCueCatalogSO
+  <Entries>k__BackingField:
+  - <CueId>k__BackingField: 220
+    <Clip>k__BackingField: {fileID: 8300000, guid: eb8a23171b9d81042854d6741318a376, type: 3}
+    <Volume>k__BackingField: 0.6
+    <PitchMin>k__BackingField: 0.9
+    <PitchMax>k__BackingField: 1.1
+  - <CueId>k__BackingField: 221
+    <Clip>k__BackingField: {fileID: 8300000, guid: 1ae5bee01849faa44a8f17675e5c124b, type: 3}
+    <Volume>k__BackingField: 1
+    <PitchMin>k__BackingField: 0.9
+    <PitchMax>k__BackingField: 1.1
+  - <CueId>k__BackingField: 222
+    <Clip>k__BackingField: {fileID: 8300000, guid: 5118c7cc1d6879a45a41b03c5b39b154, type: 3}
+    <Volume>k__BackingField: 1
+    <PitchMin>k__BackingField: 0.9
+    <PitchMax>k__BackingField: 1.1
+  - <CueId>k__BackingField: 100
+    <Clip>k__BackingField: {fileID: 8300000, guid: ce2bdc71de8221046b5109f02c551f46, type: 3}
+    <Volume>k__BackingField: 1
+    <PitchMin>k__BackingField: 1
+    <PitchMax>k__BackingField: 1
+  - <CueId>k__BackingField: 211
+    <Clip>k__BackingField: {fileID: 8300000, guid: ba2040f712081dc459de2f7a20afe7a9, type: 3}
+    <Volume>k__BackingField: 1
+    <PitchMin>k__BackingField: 1.5
+    <PitchMax>k__BackingField: 1.5
+  - <CueId>k__BackingField: 210
+    <Clip>k__BackingField: {fileID: 8300000, guid: ba2040f712081dc459de2f7a20afe7a9, type: 3}
+    <Volume>k__BackingField: 1
+    <PitchMin>k__BackingField: 1
+    <PitchMax>k__BackingField: 1
+  - <CueId>k__BackingField: 200
+    <Clip>k__BackingField: {fileID: 8300000, guid: ba2040f712081dc459de2f7a20afe7a9, type: 3}
+    <Volume>k__BackingField: 1
+    <PitchMin>k__BackingField: 1.2
+    <PitchMax>k__BackingField: 1.2
