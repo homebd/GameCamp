@@ -258,6 +258,8 @@ MonoBehaviour:
   outGameSceneName: OutGame
   resultText: {fileID: 1378429366938989263}
   returnButton: {fileID: 7902667500303852118}
+  showAnimDuration: 0.22
+  showAnimScaleFrom: 0.4
 --- !u!1 &2496348929552019833
 GameObject:
   m_ObjectHideFlags: 0

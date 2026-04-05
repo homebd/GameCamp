@@ -1,11 +1,14 @@
 using GameCamp.Game.Path;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace GameCamp.Game.Snake
 {
     public class SnakeSegmentVisual : MonoBehaviour
     {
         [SerializeField] private Transform[] circles = new Transform[0];
+        [SerializeField] private SortingGroup sortingGroup;
+        [SerializeField] private int baseSortingOrder = 0;
         [SerializeField] private float spacing = 0.16f;
         [SerializeField] private float nextSegmentSpacingMultiplier = 1f;
         [SerializeField] private float positionLerpSpeed = 24f;
@@ -17,6 +20,8 @@ namespace GameCamp.Game.Snake
         [SerializeField] private Color hitColor = new(1f, 0.35f, 0.35f, 1f);
         [SerializeField] private float hitScaleMultiplier = 1.14f;
         [SerializeField] private SpriteRenderer[] enrageSpriteTargets = new SpriteRenderer[0];
+        [Header("Spawn Fade")]
+        [SerializeField] private float spawnFadeDuration = 0.2f;
 
         private bool hasPoseInitialized;
         private float hitFeedbackRemaining;
@@ -24,6 +29,10 @@ namespace GameCamp.Game.Snake
         private Color[] baseColors = new Color[0];
         private Vector3[] baseScales = new Vector3[0];
         private Sprite[] baseEnrageSprites = new Sprite[0];
+        private SpriteRenderer[] spawnFadeRenderers = new SpriteRenderer[0];
+        private float[] spawnFadeTargetAlpha = new float[0];
+        private float spawnFadeElapsed;
+        private bool spawnFadePlaying;
         private bool enrageCacheReady;
 
         public float Spacing => Mathf.Max(0.01f, spacing);
@@ -55,6 +64,32 @@ namespace GameCamp.Game.Snake
             EnsureHitCache();
             hitFeedbackRemaining = Mathf.Max(0.01f, hitFeedbackDuration);
             UpdateHitFeedbackVisuals();
+        }
+
+        public void PlaySpawnFadeIn()
+        {
+            EnsureSpawnFadeRenderers();
+            spawnFadeElapsed = 0f;
+            spawnFadePlaying = true;
+            if (spawnFadeTargetAlpha == null || spawnFadeTargetAlpha.Length != spawnFadeRenderers.Length)
+            {
+                spawnFadeTargetAlpha = new float[spawnFadeRenderers.Length];
+            }
+
+            for (int i = 0; i < spawnFadeRenderers.Length; i++)
+            {
+                SpriteRenderer renderer = spawnFadeRenderers[i];
+                if (renderer == null)
+                {
+                    continue;
+                }
+
+                Color c = renderer.color;
+                float targetAlpha = c.a;
+                spawnFadeTargetAlpha[i] = targetAlpha;
+                c.a = 0f;
+                renderer.color = c;
+            }
         }
 
         public void ApplyPath(PathCurveEvaluator pathCurve, float centerDistance, bool forceSnap = false)
@@ -93,6 +128,7 @@ namespace GameCamp.Game.Snake
 
             hasPoseInitialized = true;
             TickHitFeedback();
+            TickSpawnFade();
         }
 
         public void SetEnrageSprite(Sprite sprite)
@@ -113,6 +149,22 @@ namespace GameCamp.Game.Snake
 
                 r.sprite = sprite != null ? sprite : baseEnrageSprites[i];
             }
+        }
+
+        public void SetSpawnOrderIndex(int spawnOrderIndex)
+        {
+            if (sortingGroup == null)
+            {
+                sortingGroup = GetComponentInChildren<SortingGroup>();
+            }
+
+            if (sortingGroup == null)
+            {
+                return;
+            }
+
+            int index = Mathf.Max(0, spawnOrderIndex);
+            sortingGroup.sortingOrder = baseSortingOrder - index;
         }
 
         private void TickHitFeedback()
@@ -263,6 +315,43 @@ namespace GameCamp.Game.Snake
             }
 
             enrageCacheReady = true;
+        }
+
+        private void EnsureSpawnFadeRenderers()
+        {
+            spawnFadeRenderers = CollectRenderersFromScaleTargets();
+        }
+
+        private void TickSpawnFade()
+        {
+            if (!spawnFadePlaying || spawnFadeRenderers == null || spawnFadeRenderers.Length == 0)
+            {
+                return;
+            }
+
+            float duration = Mathf.Max(0.01f, spawnFadeDuration);
+            spawnFadeElapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(spawnFadeElapsed / duration);
+            float eased = 1f - ((1f - t) * (1f - t) * (1f - t));
+
+            for (int i = 0; i < spawnFadeRenderers.Length; i++)
+            {
+                SpriteRenderer renderer = spawnFadeRenderers[i];
+                if (renderer == null)
+                {
+                    continue;
+                }
+
+                Color c = renderer.color;
+                float target = i < spawnFadeTargetAlpha.Length ? spawnFadeTargetAlpha[i] : 1f;
+                c.a = Mathf.Lerp(0f, target, eased);
+                renderer.color = c;
+            }
+
+            if (t >= 1f)
+            {
+                spawnFadePlaying = false;
+            }
         }
 
         private static float ComputeLerpFactor(float speed)

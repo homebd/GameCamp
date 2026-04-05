@@ -100,6 +100,8 @@ namespace GameCamp.Game.Snake
 
             EnsureVisual();
             visual?.ResetSmoothing();
+            visual?.SetSpawnOrderIndex(Mathf.Max(0, segmentId - 1));
+            visual?.PlaySpawnFadeIn();
             UpdateHpText();
             UpdateChestVisual();
         }

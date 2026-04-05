@@ -234,6 +234,8 @@ MonoBehaviour:
   - Rarity: 3
     DisplayName: "\uC804\uC124"
     Color: {r: 0.6981132, g: 0.5839241, b: 0.29966182, a: 1}
+  showAnimDuration: 0.22
+  showAnimScaleFrom: 0.4
 --- !u!1 &7022905329779120804
 GameObject:
   m_ObjectHideFlags: 0

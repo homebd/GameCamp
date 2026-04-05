@@ -1,5 +1,6 @@
 using GameCamp.Game.Core;
 using GameCamp.Game.Audio;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,8 +11,8 @@ namespace GameCamp.Game.Stage
     public class GameResultView : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private StageRuntimeController stageRuntimeController;
-        [SerializeField] private GameFlowController gameFlowController;
+        private StageRuntimeController stageRuntimeController;
+        private GameFlowController gameFlowController;
 
         [Header("Scene")]
         [SerializeField] private string outGameSceneName = "OutGame";
@@ -19,7 +20,10 @@ namespace GameCamp.Game.Stage
         [Header("UI")]
         [SerializeField] private TMP_Text resultText;
         [SerializeField] private Button returnButton;
+        [SerializeField] private float showAnimDuration = 0.24f;
+        [SerializeField] private float showAnimScaleFrom = 0.9f;
         private CanvasGroup selfCanvasGroup;
+        private Tween showTween;
 
         private void Awake()
         {
@@ -32,11 +36,12 @@ namespace GameCamp.Game.Stage
         private void OnEnable()
         {
             SubscribeStageEvents();
-            SetPanelVisible(false);
+            SetPanelVisible(false, false);
         }
 
         private void OnDisable()
         {
+            showTween?.Kill();
             UnsubscribeStageEvents();
         }
 
@@ -76,7 +81,7 @@ namespace GameCamp.Game.Stage
 
             AudioSystem.Instance?.PlaySfx(isClear ? GameAudioCueId.GameClear : GameAudioCueId.GameFailed);
 
-            SetPanelVisible(true);
+            SetPanelVisible(true, true);
 
             if (returnButton != null)
             {
@@ -108,8 +113,10 @@ namespace GameCamp.Game.Stage
             }
         }
 
-        private void SetPanelVisible(bool visible)
+        private void SetPanelVisible(bool visible, bool animateShow)
         {
+            showTween?.Kill();
+
             if (selfCanvasGroup == null)
             {
                 selfCanvasGroup = GetComponent<CanvasGroup>();
@@ -119,9 +126,34 @@ namespace GameCamp.Game.Stage
                 }
             }
 
-            selfCanvasGroup.alpha = visible ? 1f : 0f;
-            selfCanvasGroup.interactable = visible;
-            selfCanvasGroup.blocksRaycasts = visible;
+            if (!visible)
+            {
+                selfCanvasGroup.alpha = 0f;
+                selfCanvasGroup.interactable = false;
+                selfCanvasGroup.blocksRaycasts = false;
+                return;
+            }
+
+            selfCanvasGroup.interactable = true;
+            selfCanvasGroup.blocksRaycasts = true;
+
+            if (!animateShow)
+            {
+                selfCanvasGroup.alpha = 1f;
+                transform.localScale = Vector3.one;
+                return;
+            }
+
+            selfCanvasGroup.alpha = 0f;
+            transform.localScale = Vector3.one * Mathf.Max(0.1f, showAnimScaleFrom);
+            Sequence seq = DOTween.Sequence().SetUpdate(true);
+            seq.Join(DOTween.To(
+                () => selfCanvasGroup.alpha,
+                value => selfCanvasGroup.alpha = value,
+                1f,
+                Mathf.Max(0.01f, showAnimDuration)));
+            seq.Join(transform.DOScale(Vector3.one, Mathf.Max(0.01f, showAnimDuration)).SetEase(Ease.OutCubic));
+            showTween = seq;
         }
     }
 }

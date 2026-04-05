@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using GameCamp.Game.Data;
 using UnityEngine;
 
@@ -19,11 +20,14 @@ namespace GameCamp.Game.Rewards
         [SerializeField] private RewardOptionView optionPrefab;
         [SerializeField] private Transform optionParent;
         [SerializeField] private RarityPresentation[] rarityPresentations = Array.Empty<RarityPresentation>();
+        [SerializeField] private float showAnimDuration = 0.22f;
+        [SerializeField] private float showAnimScaleFrom = 0.92f;
 
         private readonly List<RewardOptionView> optionViews = new();
         private readonly Dictionary<RewardRarity, RarityPresentation> rarityByType = new();
         private RewardSystem rewardSystem;
         private CanvasGroup selfCanvasGroup;
+        private Tween showTween;
 
         private void Awake()
         {
@@ -38,11 +42,12 @@ namespace GameCamp.Game.Rewards
         private void OnEnable()
         {
             SubscribeRewardSystem();
-            SetPanelVisible(false);
+            SetPanelVisible(false, false);
         }
 
         private void OnDisable()
         {
+            showTween?.Kill();
             UnsubscribeRewardSystem();
         }
 
@@ -98,7 +103,7 @@ namespace GameCamp.Game.Rewards
                 return;
             }
 
-            SetPanelVisible(true);
+            SetPanelVisible(true, true);
             EnsureOptionViewCount(options.Count);
 
             for (int i = 0; i < optionViews.Count; i++)
@@ -143,7 +148,7 @@ namespace GameCamp.Game.Rewards
 
         private void HandleRewardOptionsClosed()
         {
-            SetPanelVisible(false);
+            SetPanelVisible(false, false);
         }
 
         private void HandleSelectReward(int rewardId)
@@ -160,8 +165,10 @@ namespace GameCamp.Game.Rewards
             }
         }
 
-        private void SetPanelVisible(bool visible)
+        private void SetPanelVisible(bool visible, bool animateShow)
         {
+            showTween?.Kill();
+
             if (panelRoot == gameObject)
             {
                 if (selfCanvasGroup == null)
@@ -173,13 +180,85 @@ namespace GameCamp.Game.Rewards
                     }
                 }
 
-                selfCanvasGroup.alpha = visible ? 1f : 0f;
-                selfCanvasGroup.interactable = visible;
-                selfCanvasGroup.blocksRaycasts = visible;
+                if (!visible)
+                {
+                    selfCanvasGroup.alpha = 0f;
+                    selfCanvasGroup.interactable = false;
+                    selfCanvasGroup.blocksRaycasts = false;
+                    return;
+                }
+
+                selfCanvasGroup.interactable = true;
+                selfCanvasGroup.blocksRaycasts = true;
+
+                if (!animateShow)
+                {
+                    selfCanvasGroup.alpha = 1f;
+                    transform.localScale = Vector3.one;
+                    return;
+                }
+
+                selfCanvasGroup.alpha = 0f;
+                transform.localScale = Vector3.one * Mathf.Max(0.1f, showAnimScaleFrom);
+                Sequence seq = DOTween.Sequence().SetUpdate(true);
+                seq.Join(DOTween.To(
+                    () => selfCanvasGroup.alpha,
+                    value => selfCanvasGroup.alpha = value,
+                    1f,
+                    Mathf.Max(0.01f, showAnimDuration)));
+                seq.Join(transform.DOScale(Vector3.one, Mathf.Max(0.01f, showAnimDuration)).SetEase(Ease.OutCubic));
+                showTween = seq;
                 return;
             }
 
             panelRoot.SetActive(visible);
+            CanvasGroup cg = panelRoot.GetComponent<CanvasGroup>();
+            if (cg == null)
+            {
+                cg = panelRoot.AddComponent<CanvasGroup>();
+            }
+
+            RectTransform rt = panelRoot.transform as RectTransform;
+            if (!visible)
+            {
+                cg.alpha = 0f;
+                cg.interactable = false;
+                cg.blocksRaycasts = false;
+                return;
+            }
+
+            cg.interactable = true;
+            cg.blocksRaycasts = true;
+
+            if (!animateShow)
+            {
+                cg.alpha = 1f;
+                if (rt != null)
+                {
+                    rt.localScale = Vector3.one;
+                }
+
+                return;
+            }
+
+            cg.alpha = 0f;
+            if (rt != null)
+            {
+                rt.localScale = Vector3.one * Mathf.Max(0.1f, showAnimScaleFrom);
+            }
+
+            Sequence rootSeq = DOTween.Sequence().SetUpdate(true);
+            rootSeq.Join(DOTween.To(
+                () => cg.alpha,
+                value => cg.alpha = value,
+                1f,
+                Mathf.Max(0.01f, showAnimDuration)));
+            if (rt != null)
+            {
+                rootSeq.Join(rt.DOScale(Vector3.one, Mathf.Max(0.01f, showAnimDuration)).SetEase(Ease.OutCubic));
+            }
+
+            showTween = rootSeq;
         }
 
         private void RebuildRarityMap()

@@ -80,7 +80,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: c609fac0207664429bdf1da864869778, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -218,7 +218,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: c609fac0207664429bdf1da864869778, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -285,11 +285,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6082334943975594821}
+  - component: {fileID: 3508975788151879067}
+  - component: {fileID: 57089732583671591}
   - component: {fileID: 5593965132313119669}
   - component: {fileID: 5174637688922844227}
   - component: {fileID: -3960345380153860827}
-  - component: {fileID: 3508975788151879067}
-  - component: {fileID: 57089732583671591}
+  - component: {fileID: 8402196269799490629}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -318,70 +319,6 @@ Transform:
   - {fileID: 7323039866333546721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5593965132313119669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4540688264035023868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db51f5b300d4f36498dd3c4b225186bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Snake.SnakeSegmentRuntime
-  visual: {fileID: 5174637688922844227}
-  hpText: {fileID: 834873035951565240}
-  chestVisual: {fileID: 4851096426390374046}
-  chestVisualByRewardLevel:
-  - RewardLevel: 1
-    ChestSprite: {fileID: 21300000, guid: 3cfe4ba70c5a64a869af65245c952b72, type: 3}
-  - RewardLevel: 2
-    ChestSprite: {fileID: 21300000, guid: 683c146355dd34a45bd3be755e9adaf7, type: 3}
-  - RewardLevel: 3
-    ChestSprite: {fileID: 21300000, guid: d00246ab6aac74e39b93f726ce041665, type: 3}
-  positionLerpSpeed: 20
---- !u!114 &5174637688922844227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4540688264035023868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ee2b42874a44194f94f2c0577296928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Snake.SnakeSegmentVisual
-  circles:
-  - {fileID: 1629064437852358109}
-  - {fileID: 4302439231720795300}
-  - {fileID: 111529757690934333}
-  - {fileID: 4213047479291191105}
-  - {fileID: 7931731693676625757}
-  spacing: 0.5
-  nextSegmentSpacingMultiplier: 1.3
-  positionLerpSpeed: 24
-  hitRenderers: []
-  hitScaleTargets: []
-  hitFeedbackDuration: 0.14
-  hitColor: {r: 1, g: 0.35, b: 0.35, a: 1}
-  hitScaleMultiplier: 1.14
---- !u!114 &-3960345380153860827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4540688264035023868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2307fd14601dd24e98e0a4cf1ed329f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Feedback.SegmentCombatFeedbackBridge
-  segment: {fileID: 5593965132313119669}
-  showDamageText: 1
-  showHitVfx: 1
 --- !u!50 &3508975788151879067
 Rigidbody2D:
   serializedVersion: 5
@@ -508,6 +445,87 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 4540688264035023868}
+--- !u!114 &5593965132313119669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540688264035023868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db51f5b300d4f36498dd3c4b225186bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Snake.SnakeSegmentRuntime
+  visual: {fileID: 5174637688922844227}
+  hpText: {fileID: 834873035951565240}
+  chestVisual: {fileID: 4851096426390374046}
+  chestVisualByRewardLevel:
+  - RewardLevel: 1
+    ChestSprite: {fileID: 21300000, guid: 3cfe4ba70c5a64a869af65245c952b72, type: 3}
+  - RewardLevel: 2
+    ChestSprite: {fileID: 21300000, guid: 683c146355dd34a45bd3be755e9adaf7, type: 3}
+  - RewardLevel: 3
+    ChestSprite: {fileID: 21300000, guid: d00246ab6aac74e39b93f726ce041665, type: 3}
+  positionLerpSpeed: 20
+--- !u!114 &5174637688922844227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540688264035023868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee2b42874a44194f94f2c0577296928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Snake.SnakeSegmentVisual
+  circles:
+  - {fileID: 1629064437852358109}
+  - {fileID: 4302439231720795300}
+  - {fileID: 111529757690934333}
+  - {fileID: 4213047479291191105}
+  - {fileID: 7931731693676625757}
+  sortingGroup: {fileID: 8402196269799490629}
+  baseSortingOrder: 0
+  spacing: 0.5
+  nextSegmentSpacingMultiplier: 1.3
+  positionLerpSpeed: 24
+  hitRenderers: []
+  hitScaleTargets: []
+  hitFeedbackDuration: 0.14
+  hitColor: {r: 1, g: 0.35, b: 0.35, a: 1}
+  hitScaleMultiplier: 1.14
+  enrageSpriteTargets: []
+  spawnFadeDuration: 0.8
+--- !u!114 &-3960345380153860827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540688264035023868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2307fd14601dd24e98e0a4cf1ed329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameCamp.Game.Feedback.SegmentCombatFeedbackBridge
+  segment: {fileID: 5593965132313119669}
+  showDamageText: 1
+  showHitVfx: 1
+--- !u!210 &8402196269799490629
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540688264035023868}
+  m_Enabled: 1
+  m_SortingLayerID: -1049444695
+  m_SortingLayer: -1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &4673502038454800612
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +606,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: c609fac0207664429bdf1da864869778, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -801,7 +819,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: c609fac0207664429bdf1da864869778, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -939,7 +957,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: c609fac0207664429bdf1da864869778, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
