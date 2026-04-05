@@ -40,9 +40,8 @@
 - SO/CSV 기반으로 게임 밸런스 수치를 코드에서 분리했습니다.
 - 런타임 컨트롤러(`StageRuntimeController`, `RewardSystem`)가 데이터 로딩과 상태 전환을 담당하도록 역할을 분리했습니다.
 
-## 실행 방법
-1. Unity에서 프로젝트를 엽니다.
-2. `Assets/Scenes/OutGame.unity`을 실행합니다.
+## 다운로드
+[Windosw 실행 파일 다운로드](https://github.com/homebd/GameCamp/releases/tag/v1.0.0)
 
 ## 디렉터리 개요
 - `Assets/Scripts/Game/Path`: 경로 평가(선형/베지에) 로직
