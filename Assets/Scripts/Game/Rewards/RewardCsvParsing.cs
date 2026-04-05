@@ -9,6 +9,8 @@ namespace GameCamp.Game.Rewards
 {
     public static class RewardCsvParsing
     {
+        private static bool s_encodingProviderInitialized;
+
         public static List<RewardDefinition> Parse(TextAsset csvAsset)
         {
             if (csvAsset == null)
@@ -336,6 +338,8 @@ namespace GameCamp.Game.Rewards
                 // Fall through to Korean legacy encodings.
             }
 
+            EnsureCodePagesEncodingProviderRegistered();
+
             try
             {
                 return Encoding.GetEncoding(949).GetString(bytes); // CP949
@@ -350,6 +354,30 @@ namespace GameCamp.Game.Rewards
                 {
                     return csvAsset.text ?? string.Empty;
                 }
+            }
+        }
+
+        private static void EnsureCodePagesEncodingProviderRegistered()
+        {
+            if (s_encodingProviderInitialized)
+            {
+                return;
+            }
+
+            s_encodingProviderInitialized = true;
+
+            try
+            {
+                Type providerType = Type.GetType("System.Text.CodePagesEncodingProvider, System.Text.Encoding.CodePages");
+                object provider = providerType != null ? providerType.GetProperty("Instance")?.GetValue(null) : null;
+                if (provider is EncodingProvider encodingProvider)
+                {
+                    Encoding.RegisterProvider(encodingProvider);
+                }
+            }
+            catch
+            {
+                // Ignore; fallback decode will continue to csvAsset.text.
             }
         }
     }
